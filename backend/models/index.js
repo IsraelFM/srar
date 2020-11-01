@@ -8,5 +8,6 @@ const db = {};
 db.mongoose = mongoose;
 db.url = dbConfig.url;
 db.user = require("./user.model")(mongoose);
+db.accident = require("./accident.model")(mongoose);
 
 module.exports = db;

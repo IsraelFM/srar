@@ -25,6 +25,7 @@ app.use('/', api);
 
 // Set our api routes
 require('./routes/user.routes')(app);
+require('./routes/accident.routes')(app);
 
 // Connect to mongodb
 db.mongoose
