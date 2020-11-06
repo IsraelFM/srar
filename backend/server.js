@@ -26,6 +26,7 @@ app.use('/', api);
 // Set our api routes
 require('./routes/user.routes')(app);
 require('./routes/accident.routes')(app);
+require('./routes/event.routes')(app);
 require('./routes/panicButton.routes')(app);
 
 // Connect to mongodb
