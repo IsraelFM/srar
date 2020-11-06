@@ -58,10 +58,13 @@ exports.findOne = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
+    const limit = req.query && (req.query.limit) > 0 ? req.query.limit : 6
+    const offset = req.query && (req.query.offset) > 0 ? req.query.offset : 1
+
     Accident
         .find({})
         .then(data => {
-            res.status(200).send(data);
+            res.status(200).send(data.slice(offset - 1,limit*offset));
         })
         .catch(err => {
             res.status(500).send({
