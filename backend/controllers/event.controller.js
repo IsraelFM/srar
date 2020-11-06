@@ -1,38 +1,29 @@
 const db = require('../models')
-var { DateTime } = require('luxon');
-const Accident = db.accident;
+const Event = db.event;
 
 exports.create = (req, res) => {
     // Validate request
-    if (!req.body.date_hour || !req.body.coordinates || !req.body.region || !req.body.type || !req.body.shift) {
+    if (!req.body.track_situation || !req.body.track_type) {
         res.status(400).send({ message: "Content can not be empty!" });
         return;
     }
 
-    // Create a Accident instance
-    const accident = new Accident({
-        date_hour: DateTime.fromFormat(req.body.date_hour, 'dd/MM/yyyy HH:mm').setZone('America/Sao_Paulo'),
-        involved_number: req.body.involved_number,
-        location: {
-            type: 'Point',
-            coordinates: req.body.coordinates
-        },
-        region: req.body.region,
-        type: req.body.type,
-        shift: req.body.shift,
-        event_id: req.body.event_id,
-        user_id: req.body.user_id
+    // Create a Event instance
+    const event = new Event({
+        track_situation: req.body.track_situation,
+        track_type: req.body.track_type,
+        measures_taken: req.body.measures_taken,
     });
 
-    // Save Accident in the database
-    accident
+    // Save Event in the database
+    event
         .save()
         .then(data => {
             res.send(data);
         })
         .catch(err => {
             res.status(500).send({
-                message: err.message || "Some error occurred while creating the accident."
+                message: err.message || "Some error occurred while creating the event."
             });
         });
 };
@@ -40,35 +31,32 @@ exports.create = (req, res) => {
 exports.findOne = (req, res) => {
     const id = req.params.id;
 
-    Accident
+    Event
         .findById(id)
         .then(data => {
             if (!data)
                 res.status(404).send({
-                    message: "Not found Accident with id " + id
+                    message: "Not found Event with id " + id
                 });
             else 
                 res.send(data);
         })
         .catch(() => {
             res.status(500).send({
-                message: "Error retrieving Accident with id=" + id
+                message: "Error retrieving Event with id=" + id
             });
         });
 };
 
 exports.findAll = (req, res) => {
-    const limit = req.query && (req.query.limit) > 0 ? req.query.limit : 6
-    const offset = req.query && (req.query.offset) > 0 ? req.query.offset : 1
-
-    Accident
+    Event
         .find({})
         .then(data => {
-            res.status(200).send(data.slice(offset - 1,limit*offset));
+            res.status(200).send(data);
         })
         .catch(err => {
             res.status(500).send({
-                message: err.message || "Some error occurred while retrieving accidents."
+                message: err.message || "Some error occurred while retrieving events."
             });
         });
 };
@@ -83,22 +71,22 @@ exports.update = (req, res) => {
 
     const id = req.params.id;
     
-    Accident
+    Event
         .findByIdAndUpdate(id, req.body)
         .then(data => {
             if (!data) {
                 res.status(404).send({
-                    message: `Cannot update Accident with id=${id}. Maybe Accident was not found!`
+                    message: `Cannot update Event with id=${id}. Maybe Event was not found!`
                 });
             } else {
                 res.send({
-                    message: "Accident was updated successfully."
+                    message: "Event was updated successfully."
                 });
             }
         })
         .catch(err => {
             res.status(500).send({
-                message: err.message || "Error updating Accident to accident with id=" + id
+                message: err.message || "Error updating Event to event with id=" + id
             });
         });
 };
@@ -106,22 +94,22 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
     const id = req.params.id;
 
-    Accident
+    Event
         .findByIdAndDelete(id)
         .then(data => {
             if (!data) {
                 res.status(404).send({
-                    message: `Cannot delete Accident with id=${id}. Maybe Accident was not found!`
+                    message: `Cannot delete Event with id=${id}. Maybe Event was not found!`
                 });
             } else {
                 res.send({
-                    message: "Accident was deleted successfully!"
+                    message: "Event was deleted successfully!"
                 });
             }
         })
         .catch(() => {
             res.status(500).send({
-                message: "Could not delete Accident with id=" + id
+                message: "Could not delete Event with id=" + id
             });
         });
 };

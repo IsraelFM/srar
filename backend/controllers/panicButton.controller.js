@@ -1,38 +1,34 @@
 const db = require('../models')
-var { DateTime } = require('luxon');
-const Accident = db.accident;
+const PannicButton = db.panicButton;
+let { DateTime } = require('luxon');
 
 exports.create = (req, res) => {
     // Validate request
-    if (!req.body.date_hour || !req.body.coordinates || !req.body.region || !req.body.type || !req.body.shift) {
+    if (!req.body.date_hour || !req.body.coordinates || !req.body.user_id) {
         res.status(400).send({ message: "Content can not be empty!" });
         return;
     }
 
-    // Create a Accident instance
-    const accident = new Accident({
+    // Create a pannic button instance
+    const panicButton = new PannicButton({
         date_hour: DateTime.fromFormat(req.body.date_hour, 'dd/MM/yyyy HH:mm').setZone('America/Sao_Paulo'),
-        involved_number: req.body.involved_number,
         location: {
             type: 'Point',
             coordinates: req.body.coordinates
         },
-        region: req.body.region,
-        type: req.body.type,
-        shift: req.body.shift,
-        event_id: req.body.event_id,
+        status: req.body.status,
         user_id: req.body.user_id
     });
 
-    // Save Accident in the database
-    accident
+    // Save pannic button in the database
+    panicButton
         .save()
         .then(data => {
             res.send(data);
         })
         .catch(err => {
             res.status(500).send({
-                message: err.message || "Some error occurred while creating the accident."
+                message: err.message || "Some error occurred while creating the panic button."
             });
         });
 };
@@ -40,35 +36,35 @@ exports.create = (req, res) => {
 exports.findOne = (req, res) => {
     const id = req.params.id;
 
-    Accident
+    PannicButton
         .findById(id)
         .then(data => {
             if (!data)
                 res.status(404).send({
-                    message: "Not found Accident with id " + id
+                    message: "Not found PannicButton with id " + id
                 });
             else 
                 res.send(data);
         })
         .catch(() => {
             res.status(500).send({
-                message: "Error retrieving Accident with id=" + id
+                message: "Error retrieving PannicButton with id=" + id
             });
         });
 };
 
 exports.findAll = (req, res) => {
-    const limit = req.query && (req.query.limit) > 0 ? req.query.limit : 6
-    const offset = req.query && (req.query.offset) > 0 ? req.query.offset : 1
+    const user_id = req.body.user_id;
+    let condition = user_id ? { user_id: user_id } : {};
 
-    Accident
-        .find({})
+    PannicButton
+        .find(condition)
         .then(data => {
-            res.status(200).send(data.slice(offset - 1,limit*offset));
+            res.status(200).send(data);
         })
         .catch(err => {
             res.status(500).send({
-                message: err.message || "Some error occurred while retrieving accidents."
+                message: err.message || "Some error occurred while retrieving pannic button cases."
             });
         });
 };
@@ -83,22 +79,22 @@ exports.update = (req, res) => {
 
     const id = req.params.id;
     
-    Accident
+    PannicButton
         .findByIdAndUpdate(id, req.body)
         .then(data => {
             if (!data) {
                 res.status(404).send({
-                    message: `Cannot update Accident with id=${id}. Maybe Accident was not found!`
+                    message: `Cannot update PannicButton with id=${id}. Maybe pannic button was not found!`
                 });
             } else {
                 res.send({
-                    message: "Accident was updated successfully."
+                    message: "PannicButton was updated successfully."
                 });
             }
         })
         .catch(err => {
             res.status(500).send({
-                message: err.message || "Error updating Accident to accident with id=" + id
+                message: err.message || "Error updating PannicButton to panic button with id=" + id
             });
         });
 };
@@ -106,22 +102,22 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
     const id = req.params.id;
 
-    Accident
+    PannicButton
         .findByIdAndDelete(id)
         .then(data => {
             if (!data) {
                 res.status(404).send({
-                    message: `Cannot delete Accident with id=${id}. Maybe Accident was not found!`
+                    message: `Cannot delete PannicButton with id=${id}. Maybe pannic button was not found!`
                 });
             } else {
                 res.send({
-                    message: "Accident was deleted successfully!"
+                    message: "PannicButton was deleted successfully!"
                 });
             }
         })
         .catch(() => {
             res.status(500).send({
-                message: "Could not delete Accident with id=" + id
+                message: "Could not delete pannic button with id=" + id
             });
         });
 };

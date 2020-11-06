@@ -1,0 +1,29 @@
+#############################################################################
+############################### CRUD EVENT ##################################
+
+### Busca a informação do evento
+
+GET  http://localhost:3000/api/event/:event_id HTTP/1.1
+
+### Registra evento (campos obrigatórios)
+
+POST  http://localhost:3000/api/event HTTP/1.1
+Content-Type: application/json
+
+{
+    "track_situation": "Interditada",
+    "track_type": "Pavimentada",
+}
+
+### Insere a informação de "Providências"
+
+PUT  http://localhost:3000/api/event/:event_id HTTP/1.1
+Content-Type: application/json
+
+{
+    "measures_taken": "A pista foi isolada em ambas as vias. Um carro de bombeiros foi chamado."
+}
+
+### Remove o evento
+
+DELETE  http://localhost:3000/api/event/:event_id HTTP/1.1
