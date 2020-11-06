@@ -26,9 +26,11 @@ app.use(function (req, res, next) {
 
 app.use("/", api);
 
-// Set our api routes
-require("./routes/user.routes")(app);
-require("./routes/accident.routes")(app);
+// Set our api routes;;
+require('./routes/user.routes')(app);
+require('./routes/accident.routes')(app);
+require('./routes/event.routes')(app);
+require('./routes/panicButton.routes')(app);
 
 // Connect to mongodb
 db.mongoose
@@ -47,7 +49,7 @@ db.mongoose
   });
 
 // Get port from environment and store in Express.
-const port = process.env.PORT || "3333";
+const port = process.env.PORT || "3000";
 app.set("port", port);
 
 // Create HTTP server.
