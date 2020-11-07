@@ -3,11 +3,13 @@ module.exports = (mongoose) => {
         type: {
             type: String,
             enum: ['Point'],
-            required: true
+            required: true,
+            immutable: true
         },
         coordinates: {
             type: [Number],
-            required: true
+            required: true,
+            immutable: true
         }
     };
 
@@ -15,6 +17,7 @@ module.exports = (mongoose) => {
         date_hour: {
             type: Date,
             required: true,
+            immutable: true
         },
         location: pointGeo,
         status: {
@@ -26,7 +29,8 @@ module.exports = (mongoose) => {
         user_id: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'user',
-            required: true
+            required: true,
+            immutable: true
         },
         __v: {
             type: Number,
