@@ -11,5 +11,6 @@ db.user = require("./user.model")(mongoose);
 db.accident = require("./accident.model")(mongoose);
 db.event = require("./event.model")(mongoose);
 db.panicButton = require("./panicButton.model")(mongoose);
+db.rating = require("./rating.model")(mongoose);
 
 module.exports = db;
