@@ -1,0 +1,36 @@
+#############################################################################
+############################## CRUD ACCIDENT ################################
+
+### Busca a informação do acidente
+
+GET  http://localhost:3000/api/accident/:accident_id HTTP/1.1
+
+### Registra acidente (campos obrigatórios)
+
+POST  http://localhost:3000/api/accident HTTP/1.1
+Content-Type: application/json
+
+{
+    "date_hour": "20/11/2020 00:14",
+    "coordinates": [
+        -122.5,
+        37.7
+    ],
+    "region": "Centro-Oeste",
+    "type": "Colisão frontal",
+    "shift": "Dia",
+    "user_id": "5f9e28e9d404dc5ef4d93bde"
+}
+
+### Muda tipo do acidente para "Administrador"
+
+PUT  http://localhost:3000/api/accident/:accident_id HTTP/1.1
+Content-Type: application/json
+
+{
+    "type": "Colisão lateral"
+}
+
+### Remove o acidente
+
+DELETE  http://localhost:3000/api/accident/:accident_id HTTP/1.1
