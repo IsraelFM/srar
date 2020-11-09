@@ -1,5 +1,6 @@
 const db = require('../models')
 const User = db.user;
+const Vehicle = db.vehicle;
 
 exports.create = (req, res) => {
     // Validate request
@@ -138,7 +139,9 @@ exports.delete = (req, res) => {
 
     User
         .findByIdAndDelete(id)
-        .then(data => {
+        .then(async data => {
+            await Vehicle.deleteMany({ user_id: id });
+
             if (!data) {
                 res.status(404).send({
                     message: `Cannot delete User with id=${id}. Maybe User was not found!`
