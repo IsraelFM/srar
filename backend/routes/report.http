@@ -4,3 +4,7 @@
 ### Relatório de rankings
 
 GET  http://localhost:3000/api/report/ranking HTTP/1.1
+
+### Relatório de acidentes por região
+
+GET  http://localhost:3000/api/report/region HTTP/1.1

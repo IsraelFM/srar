@@ -4,7 +4,7 @@ module.exports = app => {
 
     router.get('/ranking', report.ranking);
 
-    // router.get('/region', report.region);
+    router.get('/region', report.region);
 
     // router.get('/live', report.live);
 
