@@ -46,7 +46,10 @@ const SignUp: React.FC = () => {
           abortEarly: false,
         });
 
-        await api.post('/users', data);
+        await api.post('/user', {
+          ...data,
+          cpf: Math.ceil(Math.random() * 1000) + '222.333-44',
+        });
 
         history.push('/');
 

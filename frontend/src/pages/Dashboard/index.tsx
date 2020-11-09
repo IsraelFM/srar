@@ -3,9 +3,13 @@ import { useHistory } from 'react-router-dom';
 import { TileLayer, Marker, Map } from 'react-leaflet';
 import axios from 'axios';
 import { FiPower } from 'react-icons/fi';
+import { RiAlertLine } from 'react-icons/ri';
 
 import { LeafletMouseEvent } from 'leaflet';
 import api from '../../services/api';
+
+import Food from '../../components/Food';
+import ModalEditFood from '../../components/ModalEditFood';
 
 import { useAuth } from '../../hooks/auth';
 
@@ -25,7 +29,20 @@ interface IBGEUFResponse {
   nome: string;
 }
 
+interface IFoodPlate {
+  id: number;
+  name: string;
+  image: string;
+  price: string;
+  description: string;
+  available: boolean;
+}
+
 const CreatePoint: React.FC = () => {
+  const [foods, setFoods] = useState<IFoodPlate[]>([]);
+  const [editingFood, setEditingFood] = useState<IFoodPlate>({} as IFoodPlate);
+  const [editModalOpen, setEditModalOpen] = useState(false);
+
   const [items, setItems] = useState<Item[]>([]);
   const [ufs, setUfs] = useState<string[]>([]);
   const { signOut } = useAuth();
@@ -75,6 +92,34 @@ const CreatePoint: React.FC = () => {
         setUfs(ufInitials);
       });
   }, []);
+
+  async function handleUpdateFood(
+    food: Omit<IFoodPlate, 'id' | 'available'>,
+  ): Promise<void> {
+    const response = await api.put(`/foods/${editingFood.id}`, {
+      ...food,
+      id: editingFood.id,
+      available: editingFood.available,
+    });
+
+    const foodListUpdated = foods.map(currentFood => {
+      if (editingFood.id !== currentFood.id) {
+        return currentFood;
+      }
+      return response.data;
+    });
+
+    setFoods(foodListUpdated);
+  }
+
+  function toggleEditModal(): void {
+    setEditModalOpen(!editModalOpen);
+  }
+
+  function handleEditFood(food: IFoodPlate): void {
+    setEditingFood(food);
+    toggleEditModal();
+  }
 
   function handleSelectUf(event: ChangeEvent<HTMLSelectElement>) {
     const uf = event.target.value;
@@ -167,6 +212,9 @@ const CreatePoint: React.FC = () => {
           </Profile>
 
           <button type="button" onClick={signOut}>
+            <RiAlertLine />
+          </button>
+          <button type="button" onClick={signOut}>
             <FiPower />
           </button>
         </HeaderContent>
@@ -177,6 +225,12 @@ const CreatePoint: React.FC = () => {
         <form onSubmit={handleSubmit}>
           <h1>Informe o acidente</h1>
 
+          <ModalEditFood
+            isOpen={editModalOpen}
+            setIsOpen={toggleEditModal}
+            editingFood={editingFood}
+            handleUpdateFood={handleUpdateFood}
+          />
           <fieldset>
             <legend>
               <h2>Dados</h2>

@@ -1,0 +1,42 @@
+{
+  "accidents": [
+    {
+      "id": "1",
+      "title": "Accident Ten",
+      "body": "This is the accident body",
+      "publishedAt": "10-01-2020"
+    },
+    {
+      "id": "2",
+      "title": "Accident Two",
+      "body": "This is the accident body",
+      "publishedAt": "10-01-2020"
+    },
+    {
+      "id": "3",
+      "title": "Accident Three",
+      "body": "This is the accident body",
+      "publishedAt": "10-01-2020"
+    },
+    {
+      "id": "4",
+      "title": "Accident Four",
+      "body": "This is the accident body",
+      "publishedAt": "10-01-2020"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "name": "John Doe",
+      "email": "johndoe@email.com"
+    }
+  ],
+  "panniccase": [
+    {
+      "id": "5f9e28e9d404dc5ef4d93bde",
+      "date_hour": "10-01-2020",
+      "coordinates": "-122.5,37.7"
+    }
+  ]
+}
