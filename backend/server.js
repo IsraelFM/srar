@@ -34,6 +34,7 @@ require('./routes/panicButton.routes')(app);
 require('./routes/rating.routes')(app);
 require('./routes/route.routes')(app);
 require('./routes/vehicle.routes')(app);
+require('./routes/notification.routes')(app);
 require('./routes/report.routes')(app);
 
 // Connect to mongodb
