@@ -16,12 +16,12 @@ app.use(bodyParser.json());
 
 // Cross Origin middleware
 app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header(
+        "Access-Control-Allow-Headers",
+        "Origin, X-Requested-With, Content-Type, Accept"
+    );
+    next();
 });
 
 app.use("/", api);
@@ -39,19 +39,19 @@ require('./routes/report.routes')(app);
 
 // Connect to mongodb
 db.mongoose
-  .connect(db.url, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-    useCreateIndex: true,
-  })
-  .then(() => {
-    console.log("Connected to the database!");
-  })
-  .catch((err) => {
-    console.log("Cannot connect to the database!", err);
-    process.exit();
-  });
+    .connect(db.url, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useFindAndModify: false,
+        useCreateIndex: true,
+    })
+    .then(() => {
+        console.log("Connected to the database!");
+    })
+    .catch((err) => {
+        console.log("Cannot connect to the database!", err);
+        process.exit();
+    });
 
 // Get port from environment and store in Express.
 const port = process.env.PORT || "3000";

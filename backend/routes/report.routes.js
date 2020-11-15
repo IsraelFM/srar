@@ -6,8 +6,6 @@ module.exports = app => {
 
     router.get('/region', report.region);
 
-    // router.get('/live', report.live);
-
     app.use('/api/report', router);
 
 };

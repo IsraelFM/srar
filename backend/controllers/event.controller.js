@@ -1,5 +1,6 @@
 const db = require('../models')
 const Event = db.event;
+const Accident = db.accident;
 
 exports.create = (req, res) => {
     // Validate request
@@ -12,7 +13,7 @@ exports.create = (req, res) => {
     const event = new Event({
         track_situation: req.body.track_situation,
         track_type: req.body.track_type,
-        measures_taken: req.body.measures_taken,
+        measures_taken: req.body.measures_taken
     });
 
     // Save Event in the database
@@ -91,25 +92,33 @@ exports.update = (req, res) => {
         });
 };
 
-exports.delete = (req, res) => {
+exports.delete = async (req, res) => {
     const id = req.params.id;
 
-    Event
-        .findByIdAndDelete(id)
-        .then(data => {
-            if (!data) {
-                res.status(404).send({
-                    message: `Cannot delete Event with id=${id}. Maybe Event was not found!`
+    let event = await Accident.findOne({ event_id: id });
+
+    if (!event) {
+        Event
+            .findByIdAndDelete(id)
+            .then(data => {
+                if (!data) {
+                    res.status(404).send({
+                        message: `Cannot delete Event with id=${id}. Maybe Event was not found!`
+                    });
+                } else {
+                    res.send({
+                        message: "Event was deleted successfully!"
+                    });
+                }
+            })
+            .catch(() => {
+                res.status(500).send({
+                    message: "Could not delete Event with id=" + id
                 });
-            } else {
-                res.send({
-                    message: "Event was deleted successfully!"
-                });
-            }
-        })
-        .catch(() => {
-            res.status(500).send({
-                message: "Could not delete Event with id=" + id
             });
+    } else {
+        res.status(500).send({
+            message: "This event could not be deleted because have an accident using it!"
         });
+    }
 };

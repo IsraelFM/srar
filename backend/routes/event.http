@@ -12,7 +12,7 @@ Content-Type: application/json
 
 {
     "track_situation": "Interditada",
-    "track_type": "Pavimentada",
+    "track_type": "Pavimentada"
 }
 
 ### Insere a informação de "Providências"
