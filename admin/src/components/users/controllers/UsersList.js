@@ -13,8 +13,10 @@ const EditList = (props) => {
       <Datagrid>
         <TextField source="email" />
         <TextField source="name" />
-        <EditButton basePath="/users" />
-        <DeleteButton basePath="/users" />
+        <TextField source="cpf" />
+        <TextField source="status" />
+        <EditButton basePath="/user" />
+        <DeleteButton basePath="/user" />
       </Datagrid>
     </List>
   );

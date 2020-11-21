@@ -3,7 +3,7 @@
 
 ### Busca a informação do acidente
 
-GET  http://localhost:3000/api/accident/:accident_id HTTP/1.1
+GET  http://localhost:3333/api/accident HTTP/1.1
 
 ### Registra acidente (campos obrigatórios)
 

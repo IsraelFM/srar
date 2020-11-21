@@ -5,9 +5,8 @@ const PannicCaseCreate = (props) => {
   return (
     <Create title="Create a PannicCase" {...props}>
       <SimpleForm>
-        <TextInput source="id" />
         <TextInput source="coordinates" />
-        <DateInput label="Publish" source="date_hour" />
+        <TextInput source="date_hour" />
       </SimpleForm>
     </Create>
   );

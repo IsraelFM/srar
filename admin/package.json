@@ -10,6 +10,7 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.0",
+    "google-map-react": "^2.1.9",
     "json-server": "^0.16.2",
     "prop-types": "^15.7.2",
     "ra-data-json-server": "^3.9.6",
@@ -18,12 +19,15 @@
     "react-admin": "^3.9.6",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.0",
+    "supercluster": "^7.1.0",
+    "swr": "^0.3.8",
+    "use-supercluster": "^0.2.9",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
     "dev": "concurrently \"yarn server\" \"yarn start\"",
     "server": "json-server --watch db.json --port 3333 --middlewares ./range.js",
-    "start": "react-scripts start",
+    "start": " react-scripts start  ",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

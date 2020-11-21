@@ -53,18 +53,21 @@ const AuthProvider: React.FC = ({ children }) => {
       email,
       password,
     });
-    const token = '23423',
-      user = { id: '121', name: '', email: '', avatar_url: 'sdfad' };
-    console.log(response, { res: response.data });
+    console.log(response.data);
+    if (
+      response &&
+      response.data &&
+      response.data.message === 'Authenticated login!'
+    ) {
+      const token = 'token_' + Math.random() * 1000;
 
-    //const { token, user } = response.data;
+      localStorage.setItem('@App:token', token);
+      localStorage.setItem('@App:user', JSON.stringify(response.data));
 
-    localStorage.setItem('@App:token', token);
-    localStorage.setItem('@App:user', JSON.stringify(user));
+      api.defaults.headers.authorization = `Bearer ${token}`;
 
-    api.defaults.headers.authorization = `Bearer ${token}`;
-
-    setData({ token, user });
+      setData({ token, user: response.data });
+    }
   }, []);
 
   const updateUser = useCallback(

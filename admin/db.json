@@ -1,5 +1,5 @@
 {
-  "accidents": [
+  "accident": [
     {
       "id": "1",
       "title": "Accident Ten",
@@ -25,11 +25,38 @@
       "publishedAt": "10-01-2020"
     }
   ],
-  "users": [
+  "user": [
     {
-      "id": "1",
+      "id": 0,
       "name": "John Doe",
-      "email": "johndoe@email.com"
+      "cpf": "111.222.333-44",
+      "email": "john.doe@email.com",
+      "status": "Ativo",
+      "type": "Usuário Comum"
+    },
+    {
+      "id": 1,
+      "name": "John Doe",
+      "cpf": "112.222.333-44",
+      "email": "john.doe2@email.com",
+      "status": "Ativo",
+      "type": "Usuário Comum"
+    },
+    {
+      "id": 2,
+      "name": "John Doe",
+      "cpf": "111.222.333-45",
+      "email": "john.doe.doe@email.com",
+      "status": "Ativo",
+      "type": "Administrador"
+    },
+    {
+      "id": 3,
+      "name": "asdfasd",
+      "cpf": "685222.333-44",
+      "email": "asdfasdfasdf@asdf.com",
+      "status": "Ativo",
+      "type": "Usuário Comum"
     }
   ],
   "panniccase": [

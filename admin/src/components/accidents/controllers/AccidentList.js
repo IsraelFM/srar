@@ -13,10 +13,13 @@ const AccidentList = (props) => {
     <List {...props}>
       <Datagrid>
         <TextField source="id" />
-        <TextField source="title" />
-        <DateField source="publishedAt" />
-        <EditButton basePath="/accidents" />
-        <DeleteButton basePath="/accidents" />
+        <TextField source="region" />
+        <TextField source="type" />
+        <TextField source="shift" />
+        <TextField source="user_id" />
+        <DateField source="date_hour" />
+        <EditButton basePath="/accident" />
+        <DeleteButton basePath="/accident" />
       </Datagrid>
     </List>
   );

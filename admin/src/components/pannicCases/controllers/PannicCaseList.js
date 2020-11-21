@@ -13,10 +13,10 @@ const PannicCaseList = (props) => {
     <List {...props}>
       <Datagrid>
         <TextField source="id" />
-        <TextField source="coordinates" />
+        <TextField source="location" />
         <DateField source="date_hour" />
-        <EditButton basePath="/pannicCases" />
-        <DeleteButton basePath="/pannicCases" />
+        <EditButton basePath="/panic_button" />
+        <DeleteButton basePath="/panic_button" />
       </Datagrid>
     </List>
   );

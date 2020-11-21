@@ -4,11 +4,7 @@ import { TileLayer, Marker, Map } from 'react-leaflet';
 import axios from 'axios';
 import { FiPower } from 'react-icons/fi';
 import { RiAlertLine } from 'react-icons/ri';
-import Fab from '@material-ui/core/Fab';
-import NotificationImportantIcon from '@material-ui/icons/NotificationImportant';
-import EditIcon from '@material-ui/icons/Edit';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import NavigationIcon from '@material-ui/icons/Navigation';
+import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 
 import { LeafletMouseEvent } from 'leaflet';
 import api from '../../services/api';
@@ -18,13 +14,7 @@ import ModalEditFood from '../../components/ModalEditFood';
 
 import { useAuth } from '../../hooks/auth';
 
-import {
-  Container,
-  Header,
-  HeaderContent,
-  Profile,
-  ContainerButton,
-} from './styles';
+import { Container, Header, HeaderContent, Profile } from './styles';
 
 import './styles.css';
 import logoImg from '../../assets/srar-logo.png';
@@ -176,7 +166,7 @@ const CreatePoint: React.FC = () => {
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
 
-    const { type, horario } = formData;
+    const { name, type, horario } = formData;
     const uf = selectedUf;
     const [latitude, longitude] = selectedPosition;
     // const items = selectedItems;
@@ -251,26 +241,12 @@ const CreatePoint: React.FC = () => {
           </button>
         </HeaderContent>
       </Header>
-      <ContainerButton>
-        <a onClick={handlePanicButton}>
-          <Fab color="secondary" aria-label="add">
-            <NotificationImportantIcon />
-          </Fab>
-        </a>
-      </ContainerButton>
-
       <div id="page-create-point">
         <header></header>
 
         <form onSubmit={handleSubmit}>
           <h1>Informe o acidente</h1>
 
-          <ModalEditFood
-            isOpen={editModalOpen}
-            setIsOpen={toggleEditModal}
-            editingFood={editingFood}
-            handleUpdateFood={handleUpdateFood}
-          />
           <fieldset>
             <legend>
               <h2>Dados</h2>

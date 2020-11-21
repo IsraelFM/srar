@@ -5,9 +5,8 @@ const PannicCaseEdit = (props) => {
   return (
     <Edit title="Edit a PannicCase" {...props}>
       <SimpleForm>
-        <TextInput source="id" />
         <TextInput source="coordinates" />
-        <DateInput source="date_hour" />
+        <TextInput source="date_hour" />
       </SimpleForm>
     </Edit>
   );

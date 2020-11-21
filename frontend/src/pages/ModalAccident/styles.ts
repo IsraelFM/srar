@@ -10,13 +10,6 @@ export const Header = styled.header`
   background: #28262e;
 `;
 
-export const ContainerButton = styled.div`
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 0%;
-`
-
 export const HeaderContent = styled.div`
   max-width: 1120px;
   margin: 0 auto;

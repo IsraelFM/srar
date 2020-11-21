@@ -16,25 +16,28 @@ app.use(bodyParser.json());
 
 // Cross Origin middleware
 app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
+  res.set({
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "DELETE,GET,PATCH,POST,PUT",
+    "Access-Control-Allow-Headers":
+      "Origin, X-Requested-With, Content-Type, Accept,Authorization",
+    "Access-Control-Expose-Headers": "Content-Range",
+    "Content-Range": "200",
+  });
   next();
 });
 
 app.use("/", api);
 
 // Set our api routes;;
-require('./routes/user.routes')(app);
-require('./routes/accident.routes')(app);
-require('./routes/event.routes')(app);
-require('./routes/panicButton.routes')(app);
-require('./routes/rating.routes')(app);
-require('./routes/route.routes')(app);
-require('./routes/vehicle.routes')(app);
-require('./routes/report.routes')(app);
+require("./routes/user.routes")(app);
+require("./routes/accident.routes")(app);
+require("./routes/event.routes")(app);
+require("./routes/panicButton.routes")(app);
+require("./routes/rating.routes")(app);
+require("./routes/route.routes")(app);
+require("./routes/vehicle.routes")(app);
+require("./routes/report.routes")(app);
 
 // Connect to mongodb
 db.mongoose
@@ -53,7 +56,7 @@ db.mongoose
   });
 
 // Get port from environment and store in Express.
-const port = process.env.PORT || "3000";
+const port = process.env.PORT || "3333";
 app.set("port", port);
 
 // Create HTTP server.

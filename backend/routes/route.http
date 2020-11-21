@@ -3,7 +3,7 @@
 
 ### Busca a informação da rota
 
-GET  http://localhost:3000/api/route/:route_id HTTP/1.1
+GET  http://localhost:3333/api/route HTTP/1.1
 
 ### Registra rota (campos obrigatórios)
 

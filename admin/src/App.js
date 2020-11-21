@@ -1,6 +1,5 @@
 import * as React from "react";
-import { Admin, Resource, ListGuesser } from "react-admin";
-//import jsonServerProvider from "ra-data-json-server";
+import { Admin, Resource } from "react-admin";
 import restProvider from "ra-data-simple-rest";
 
 import AccidentList from "./components/accidents/controllers/AccidentList";
@@ -15,32 +14,53 @@ import PannicCaseList from "./components/pannicCases/controllers/PannicCaseList"
 import PannicCaseEdit from "./components/pannicCases/controllers/PannicCaseEdit";
 import PannicCaseCreate from "./components/pannicCases/controllers/PannicCaseCreate";
 
+import RatingsList from "./components/ratings/controllers/RatingsList";
+import RatingsEdit from "./components/ratings/controllers/RatingsEdit";
+import RatingsCreate from "./components/ratings/controllers/RatingsCreate";
+
+import RoutesList from "./components/routes/controllers/RoutesList";
+import RoutesEdit from "./components/routes/controllers/RoutesEdit";
+import RoutesCreate from "./components/routes/controllers/RoutesCreate";
+
 import authProvider from "./authProvider";
 import Dashboard from "./Dashboard";
 
 const App = () => (
   <Admin
-    dataProvider={restProvider("http://localhost:3000")}
+    dataProvider={restProvider("http://localhost:3333/api")}
     dashboard={Dashboard}
     authProvider={authProvider}
   >
     <Resource
-      name="accidents"
+      name="accident"
       list={AccidentList}
       create={AccidentCreate}
       edit={AccidentEdit}
     />
     <Resource
-      name="users"
+      name="user"
       list={UsersList}
       create={UsersCreate}
       edit={UsersEdit}
     />
     <Resource
-      name="panniccase"
+      name="panic_button"
       list={PannicCaseList}
       create={PannicCaseCreate}
       edit={PannicCaseEdit}
+    />
+    <Resource
+      name="rating"
+      list={RatingsList}
+      create={RatingsCreate}
+      edit={RatingsEdit}
+    />
+
+    <Resource
+      name="route"
+      list={RoutesList}
+      create={RoutesCreate}
+      edit={RoutesEdit}
     />
   </Admin>
 );

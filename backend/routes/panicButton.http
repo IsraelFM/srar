@@ -3,7 +3,7 @@
 
 ### Busca a informação do botão do pânico
 
-GET  http://localhost:3000/api/panic_button/:panic_button_id HTTP/1.1
+GET  http://localhost:3333/api/panic_button HTTP/1.1
 
 ### Registra botão do pânico (campos obrigatórios)
 
