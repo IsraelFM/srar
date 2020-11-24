@@ -10,6 +10,10 @@ import UsersList from "./components/users/controllers/UsersList";
 import UsersEdit from "./components/users/controllers/UsersEdit";
 import UsersCreate from "./components/users/controllers/UsersCreate";
 
+import VehicleList from "./components/vehicle/controllers/UsersList";
+import VehicleEdit from "./components/vehicle/controllers/UsersEdit";
+import VehicleCreate from "./components/vehicle/controllers/UsersCreate";
+
 import PannicCaseList from "./components/pannicCases/controllers/PannicCaseList";
 import PannicCaseEdit from "./components/pannicCases/controllers/PannicCaseEdit";
 import PannicCaseCreate from "./components/pannicCases/controllers/PannicCaseCreate";
@@ -61,6 +65,12 @@ const App = () => (
       list={RoutesList}
       create={RoutesCreate}
       edit={RoutesEdit}
+    />
+    <Resource
+      name="vehicle"
+      list={VehicleList}
+      create={VehicleEdit}
+      edit={VehicleCreate}
     />
   </Admin>
 );
