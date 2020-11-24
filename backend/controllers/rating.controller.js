@@ -66,7 +66,7 @@ exports.findAll = (req, res) => {
       res.status(500).send({
         message: err.message || "Some error occurred while retrieving ratings.",
       });
-      id;
+      user_id;
     });
 };
 
