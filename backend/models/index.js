@@ -14,5 +14,6 @@ db.panicButton = require("./panicButton.model")(mongoose);
 db.rating = require("./rating.model")(mongoose);
 db.route = require("./route.model")(mongoose);
 db.vehicle = require("./vehicle.model")(mongoose);
+db.notification = require("./notification.model")(mongoose);
 
 module.exports = db;
