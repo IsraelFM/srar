@@ -89,8 +89,6 @@ exports.findOne = (req, res) => {
       }
     })
     .catch(() => {
-      console.log(err);
-
       res.status(500).send({
         message: "Error retrieving Accident with id=" + id,
       });
@@ -105,8 +103,6 @@ exports.findAll = (req, res) => {
 
   Accident.find({})
     .then((data) => {
-      let i = 0;
-
       res.status(200).send(
         data
           .map(({ _id, location, date_hour, region, type, shift, user_id }) => {
@@ -199,8 +195,6 @@ exports.delete = (req, res) => {
       }
     })
     .catch(() => {
-      console.log(err);
-
       res.status(500).send({
         message: "Could not delete Accident with id=" + id,
       });

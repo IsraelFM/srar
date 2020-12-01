@@ -3,7 +3,7 @@
 
 ### Busca a informação da notificação
 
-GET  http://localhost:3000/api/notification/:notification_id HTTP/1.1
+GET  http://localhost:3333/api/notification HTTP/1.1
 
 ### Registra notificação (campos obrigatórios)
 

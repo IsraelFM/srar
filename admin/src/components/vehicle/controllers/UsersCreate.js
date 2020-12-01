@@ -3,14 +3,13 @@ import { Create, SimpleForm, TextInput } from "react-admin";
 
 const UsersCreate = (props) => {
   return (
-    <Create title="Create a User" {...props}>
+    <Create title="Create a Vehicle" {...props}>
       <SimpleForm>
-        <TextInput source="email" />
-        <TextInput source="name" />
-        <TextInput source="cpf" />
-        <TextInput source="status" />
-        <TextInput source="type" />
-        <TextInput source="password" />
+        <TextInput source="year" />
+        <TextInput source="license_plate" />
+        <TextInput source="renavam" />
+        <TextInput source="brand" />
+        <TextInput source="user_id" />
       </SimpleForm>
     </Create>
   );

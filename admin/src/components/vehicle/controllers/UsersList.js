@@ -11,12 +11,13 @@ const EditList = (props) => {
   return (
     <List {...props}>
       <Datagrid>
+        <TextField source="id" />
         <TextField source="year" />
         <TextField source="license_plate" />
         <TextField source="renavam" />
         <TextField source="brand" />
-        <EditButton basePath="/user" />
-        <DeleteButton basePath="/user" />
+        <EditButton basePath="/vehicle" />
+        <DeleteButton basePath="/vehicle" />
       </Datagrid>
     </List>
   );

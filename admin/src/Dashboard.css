@@ -1,0 +1,7 @@
+.dashboard-wrapper {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.dashboard-wrapper::-webkit-scrollbar {
+  display: none;
+}

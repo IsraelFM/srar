@@ -26,6 +26,14 @@ import RoutesList from "./components/routes/controllers/RoutesList";
 import RoutesEdit from "./components/routes/controllers/RoutesEdit";
 import RoutesCreate from "./components/routes/controllers/RoutesCreate";
 
+import NotificationList from "./components/notifications/controllers/AccidentList";
+import NotificationEdit from "./components/notifications/controllers/AccidentEdit";
+import NotificationCreate from "./components/notifications/controllers/AccidentCreate";
+
+import EventList from "./components/event/controllers/AccidentList";
+import EventEdit from "./components/event/controllers/AccidentEdit";
+import EventCreate from "./components/event/controllers/AccidentCreate";
+
 import authProvider from "./authProvider";
 import Dashboard from "./Dashboard";
 
@@ -59,7 +67,6 @@ const App = () => (
       create={RatingsCreate}
       edit={RatingsEdit}
     />
-
     <Resource
       name="route"
       list={RoutesList}
@@ -69,10 +76,23 @@ const App = () => (
     <Resource
       name="vehicle"
       list={VehicleList}
-      create={VehicleEdit}
-      edit={VehicleCreate}
+      create={VehicleCreate}
+      edit={VehicleEdit}
+    />
+    <Resource
+      name="notification"
+      list={NotificationList}
+      create={NotificationCreate}
+      edit={NotificationEdit}
+    />
+    <Resource
+      name="event"
+      list={EventList}
+      create={EventCreate}
+      edit={EventEdit}
     />
   </Admin>
 );
 
 export default App;
+/**/

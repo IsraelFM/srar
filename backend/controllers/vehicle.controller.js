@@ -46,7 +46,18 @@ exports.findOne = (req, res) => {
         res.status(404).send({
           message: "Not found Vehicle with id " + id,
         });
-      else res.send(data);
+      else {
+        const { _id, year, license_plate, renavam, brand, user_id } = data;
+
+        res.status(200).send({
+          id: _id,
+          year,
+          license_plate,
+          renavam,
+          brand,
+          user_id,
+        });
+      }
     })
     .catch(() => {
       res.status(500).send({

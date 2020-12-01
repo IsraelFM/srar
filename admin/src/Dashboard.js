@@ -4,7 +4,14 @@ import axios from "axios";
 import useSwr from "swr";
 import GoogleMapReact from "google-map-react";
 import useSupercluster from "use-supercluster";
-import "./App.css";
+import Chart from "react-google-charts";
+import "./Dashboard.css";
+
+// make sure parent container have a defined height when using
+// responsive component, otherwise height will be 0 and
+// no chart will be rendered.
+// website examples showcase many properties,
+// you'll often use just a few of them.
 
 const fetcher = (...args) => fetch(...args).then((response) => response.json());
 
@@ -107,8 +114,57 @@ const Dashboard = () => {
     });
   }, []);
 
+  const [dates, setDates] = useState([]);
+
   return (
-    <>
+    <div id="dashboard-wrapper">
+      <Chart
+        width={1000}
+        height={200}
+        chartType="Calendar"
+        loader={<div>Loading Chart</div>}
+        data={[
+          [
+            { type: "date", id: "Date" },
+            { type: "number", id: "Won/Loss" },
+          ],
+          [new Date(2018, 11, 1), 333],
+          [new Date(2018, 11, 2), 221],
+          [new Date(2018, 11, 3), 321],
+          [new Date(2018, 11, 4), 323],
+          [new Date(2018, 11, 5), 434],
+          [new Date(2018, 11, 6), 345],
+          [new Date(2018, 11, 7), 377],
+          [new Date(2018, 11, 8), 488],
+          [new Date(2018, 11, 9), 421],
+          [new Date(2018, 11, 10), 489],
+          [new Date(2018, 11, 11), 378],
+          [new Date(2018, 11, 12), 367],
+          [new Date(2018, 11, 13), 412],
+          [new Date(2018, 11, 14), 361],
+          [new Date(2018, 11, 15), 405],
+          [new Date(2018, 11, 16), 355],
+          [new Date(2018, 11, 17), 478],
+          [new Date(2018, 11, 18), 345],
+          [new Date(2018, 11, 19), 397],
+          [new Date(2018, 11, 20), 361],
+          [new Date(2018, 11, 21), 356],
+          [new Date(2018, 11, 22), 418],
+          [new Date(2018, 11, 23), 361],
+          [new Date(2018, 11, 24), 374],
+          [new Date(2018, 11, 25), 325],
+          [new Date(2018, 11, 26), 416],
+          [new Date(2018, 11, 27), 322],
+          [new Date(2018, 11, 28), 358],
+          [new Date(2018, 11, 29), 333],
+          [new Date(2018, 11, 30), 201],
+          [new Date(2018, 11, 31), 321],
+        ]}
+        options={{
+          title: "Quantidade de acidentes por dia",
+        }}
+        rootProps={{ "data-testid": "2" }}
+      />
       <h2 style={{ marginLeft: 60, fontWeight: 400, color: "#555" }}>
         Ranking dos Horários do Dia com Maior Quantidade Acidentes
       </h2>
@@ -272,7 +328,7 @@ const Dashboard = () => {
           })}
         </GoogleMapReact>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -3,12 +3,13 @@ import { Edit, SimpleForm, TextInput } from "react-admin";
 
 const UsersEdit = (props) => {
   return (
-    <Edit title="Edit a User" {...props}>
+    <Edit title="Edit a Vehicle" {...props}>
       <SimpleForm>
-        <TextInput source="email" />
-        <TextInput source="name" />
-        <TextInput source="cpf" />
-        <TextInput source="status" />
+        <TextInput source="year" />
+        <TextInput source="license_plate" />
+        <TextInput source="renavam" />
+        <TextInput source="brand" />
+        <TextInput source="user_id" />
       </SimpleForm>
     </Edit>
   );

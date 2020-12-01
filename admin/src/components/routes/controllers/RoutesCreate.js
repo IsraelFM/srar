@@ -7,7 +7,7 @@ const RoutesCreate = (props) => {
       <SimpleForm>
         <TextInput source="to_address" />
         <TextInput source="from_address" />
-        <DateTimeInput source="date_hour_start" />
+        <TextInput source="date_hour_start" />
         <TextInput source="user_id" />
       </SimpleForm>
     </Create>
